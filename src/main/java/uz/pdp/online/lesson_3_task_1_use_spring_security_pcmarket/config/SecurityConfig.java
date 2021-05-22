@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 /*KO'P QATLAMLI ODAMLAR KIRADIGAN ROLELARNI BIRINCHI YOZISH KERAK, KETMA-KETLIK KATTA AHAMIYATGA EGA*/
                 .csrf().disable()// dbga data add, edit,delete qilish uchun ruxsat
                 .authorizeRequests()// requestlarni authorization qilish
-                .antMatchers(HttpMethod.GET, "/api/order/**").hasRole("OPERATOR")
+                .antMatchers(HttpMethod.GET, "/api/order/**").hasAnyRole("OPERATOR", "SUPER_ADMIN", "MODERATOR")
                 .antMatchers(HttpMethod.POST, "/api/product/**").hasAnyRole("SUPER_ADMIN", "MODERATOR")
                 .antMatchers(HttpMethod.PUT, "/api/product/**").hasAnyRole("SUPER_ADMIN", "MODERATOR")
                 .antMatchers("/api/**").hasRole("SUPER_ADMIN")
